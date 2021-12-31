@@ -336,19 +336,14 @@ namespace TesteBackendEnContact.Controllers
 
             var csvContext = new CsvContext();
             var contacts = csvContext.Read<Contact>(path, csvFileDescription);
+
             try
             {
                 foreach (var contact in contacts)
                 {
-                    var companyIdExist = from p in _context.Companies
-                                         where p.Id.Equals(contact.CompanyId)
-                                         select p.Id;
-
-                    foreach (var company in companyIdExist)
+                    if (!ContactExists(contact.Id))
                     {
-                        if (company == contact.CompanyId)
-                        {
-                            Contact newContact = new Contact(
+                        Contact newContact = new Contact(
                             contact.Id,
                             contact.ContactBookId,
                             contact.CompanyId,
@@ -357,27 +352,8 @@ namespace TesteBackendEnContact.Controllers
                             contact.Email,
                             contact.Address);
 
-                            _context.Contacts.Add(newContact);
-                            
-                            
-                        }
-                        else
-                        {
-                            Contact newContact = new Contact(
-                            contact.Id,
-                            contact.ContactBookId,
-                            contact.CompanyId = 0,
-                            contact.Name,
-                            contact.Phone,
-                            contact.Email,
-                            contact.Address);
-
-                            _context.Contacts.Add(newContact);
-                            
-                            
-                        }
+                        _context.Contacts.Add(newContact);
                     }
-
                 }
 
                 await _context.SaveChangesAsync();
