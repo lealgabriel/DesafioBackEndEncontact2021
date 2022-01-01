@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TesteBackEndEnContact.Database;
 using TesteBackendEnContact.Core.Domain.ContactBook;
-//using CsvHelper;
 using LINQtoCSV;
 
 namespace TesteBackendEnContact.Controllers
