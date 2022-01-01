@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TesteBackEndEnContact.Database;
@@ -21,14 +19,12 @@ namespace TesteBackendEnContact.Controllers
             _context = context;
         }
 
-        // GET: api/Companies
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Company>>> GetCompanies()
         {
             return await _context.Companies.ToListAsync();
         }
 
-        // GET: api/Companies/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Company>> GetCompany(int id)
         {
@@ -42,8 +38,6 @@ namespace TesteBackendEnContact.Controllers
             return company;
         }
 
-        // PUT: api/Companies/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCompany(int id, Company company)
         {
@@ -73,8 +67,6 @@ namespace TesteBackendEnContact.Controllers
             return NoContent();
         }
 
-        // POST: api/Companies
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Company>> PostCompany(Company company)
         {
@@ -84,7 +76,6 @@ namespace TesteBackendEnContact.Controllers
             return CreatedAtAction("GetCompany", new { id = company.Id }, company);
         }
 
-        // DELETE: api/Companies/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCompany(int id)
         {

@@ -290,8 +290,6 @@ namespace TesteBackendEnContact.Controllers
             });
         }
 
-
-        // PUT: api/Contacts/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutContact(int id, Contact contact)
         {
@@ -322,7 +320,7 @@ namespace TesteBackendEnContact.Controllers
         }
 
         [HttpPost("ImportCsvFile/{path}")]
-        public async Task<ActionResult<Contact>> ExportCsvFile(
+        public async Task<ActionResult<Contact>> ImportCsvFile(
             [FromServices] AppDbContext context, string path)
 
         {
@@ -365,10 +363,6 @@ namespace TesteBackendEnContact.Controllers
             }
         }
 
-
-
-        // POST: api/Contacts
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Contact>> PostContact(Contact contact)
         {
@@ -378,7 +372,6 @@ namespace TesteBackendEnContact.Controllers
             return CreatedAtAction("GetContact", new { id = contact.Id }, contact);
         }
 
-        // DELETE: api/Contacts/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteContact(int id)
         {
